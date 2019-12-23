@@ -48,6 +48,7 @@ const sanitizeOptions = {
 		/"metaTagsData":/g,
 		/"heroBannerData":/g,
 		/"subtitleData":/g,
+		/"sectionWithImageData":/g,
 		/,export/g,
 		/{export/g,
 	],
@@ -55,6 +56,7 @@ const sanitizeOptions = {
 		'export const metaTagsData: MetaTagsTypes =',
 		'export const heroBannerData: HeroBannerDataType =',
 		'export const subtitleData: SubtitleProps =',
+		'export const sectionWithImageData: Array<SectionWithImageTypes> =',
 		';export',
 		'export',
 		'} ',
@@ -65,9 +67,6 @@ const section = `/feature/${alias}`
 
 const url = `https://www.socialbakers.com/${section}`;
 
-let metaTagsData = {}
-let heroBannerData = {}
-let subtitleData = {}
 let copy = {}
 
 const prependedData = `// @flow
@@ -78,12 +77,12 @@ import type {SectionWithImageTypes} from '../../../globals/section-with-image/se
 import {muffinCdnPath} from '../../../../../config'
 `;
 
-function splitSrcetToArray(str) {
+const splitSrcetToArray = (str) => {
     let arr = str.split(' ');
     return arr
 }
 
-// TODO get non retina => chack if item doesnt have '@2x' and its length is more than for ex.: 5
+// TODO get non retina => check if item doesnt have '@2x' and its length is more than for ex.: 5
 const filterItems = (arr, query) => {
     return arr.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) !== -1);
 };
@@ -170,6 +169,29 @@ const subtitle =($) => (
 	}
 )
 
+const features = ($) => {
+	let data = {}
+	let features = []
+	const $sections = $('.feature-page__features .row')
+	$sections.each( (i, obj) => {
+		data = {
+			data: {
+				headline: sanitizeInput($(obj).find('h3').text()),
+				text: sanitizeInput($(obj).find('p').html()),
+				img: {
+					normal: $(obj).find('img').attr("data-src"),
+					retina: $(obj).find('img').attr("data-src").replace('.png', '@2x.png'),
+				},
+			},
+			reversed: i % 2 === 0
+		}
+		features.push(data)
+
+	})
+	return copy.sectionWithImageData = features
+
+}
+
 const writeJson = (copy) => {
 	let jsonContent = JSON.stringify(copy, undefined, 0);
 
@@ -181,11 +203,9 @@ const writeJson = (copy) => {
 
 		prependFile(`./output/${alias}.js`,prependedData , function (err) {
 			if (err) {
-				// Error
+				console.log(`error in prepending: ${err} `)
 			}
-
-			// Success
-			console.log('The "data to prepend" was prepended to file!');
+			console.log(`Imports were prepended in ${alias}.js!`);
 		});
 		console.log(`JSON file has been saved in ${alias}.js`);
 	});
@@ -199,11 +219,7 @@ axios(url)
 		meta($);
 		banner($);
 		subtitle($);
-
-        // console.log(
-        //     heroBannerData.img.xl.png
-        // )
-
+		features($);
 		writeJson(copy)
 
 		replace(sanitizeOptions)

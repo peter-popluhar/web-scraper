@@ -1,7 +1,6 @@
-import {alias} from '../urls.js';
 
 const sanitizeOptions = {
-	files: `./output/${alias}.js`,
+	files: ``,
 	from: [
 		/"metaTagsData":/g,
 		/"heroBannerData":/g,
@@ -18,7 +17,7 @@ const sanitizeOptions = {
 		'export const sectionWithImageData: Array<SectionWithImageTypes> =',
 		';export',
 		'export',
-		'}] '
+		'}] ',
 	],
 };
 

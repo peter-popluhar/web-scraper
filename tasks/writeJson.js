@@ -1,9 +1,9 @@
 import fs from "fs";
-import {alias} from '../urls.js';
+// import {alias} from '../urls.js';
 import prependFile from 'prepend-file';
 import prependData from './prependData.js';
 
-const writeJson = (copy) => {
+const writeJson = (alias, copy) => {
 	let jsonContent = JSON.stringify(copy, undefined, 0);
 
 	fs.writeFile(`./output/${alias}.js`, jsonContent, 'utf8', function (err) {

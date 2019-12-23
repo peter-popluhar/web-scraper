@@ -1,22 +1,43 @@
-// file system module to perform file operations
-const fs = require('fs');
+import {testArr, urlArr1, urlArr2} from './urls.js'
+import axios from 'axios';
+import cheerio from 'cheerio';
+import getMetaTags from './tasks/getMetaTags.js';
+import getBanner from './tasks/getBanner.js';
+import getSubtitleSection from './tasks/getSubtitleSection.js';
+import getFeaturesSection from './tasks/getFeaturesSection.js';
+import writeJson from './tasks/writeJson.js';
+import replace from 'replace-in-file';
+import sanitizeOptions from './tasks/sanitizeOptions.js'
 
-// json data
-var jsonData = '{"persons":[{"name":"John","city":"New York"},{"name":"Phil","city":"Ohio"}]}';
+let section;
+let url;
+let copy = {};
 
-// parse json
-var jsonObj = JSON.parse(jsonData);
-console.log(jsonObj);
+testArr.forEach( (alias) => {
+	section = `/feature/${alias}`;
+	url = `https://www.socialbakers.com/${section}`;
 
-// stringify JSON Object
-var jsonContent = JSON.stringify(jsonObj);
-console.log(jsonContent);
+	axios(url)
+		.then(response => {
+			const html = response.data;
+			const $ = cheerio.load(html);
 
-fs.writeFile("output.json", jsonContent, 'utf8', function (err) {
-	if (err) {
-		console.log("An error occured while writing JSON Object to File.");
-		return console.log(err);
-	}
+			getMetaTags($, copy);
+			getBanner($, copy);
+			getSubtitleSection($, copy);
+			getFeaturesSection($, copy);
+			writeJson(alias, copy);
+		}).then(() => {
+		sanitizeOptions.files = `./output/${alias}.js`;
+		replace(sanitizeOptions)
+			.then(results => {
+				console.log('Replacement results:', results);
+			})
+			.catch(error => {
+				console.error('Error occurred:', error);
+			});
+	})
+		.catch(console.error);
 
-	console.log("JSON file has been saved.");
-});
+})
+

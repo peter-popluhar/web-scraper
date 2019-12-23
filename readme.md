@@ -1,2 +1,2 @@
 run with:
-node --experimental-modules scraper.js
+node --experimental-modules index.js

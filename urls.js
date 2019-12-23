@@ -1,36 +1,46 @@
-//export const alias = "social-media-analytics"
-//export const alias = "live-video-analytics" wrong!
-//export const alias = "personalized-marketing"
-//export const alias = "sentiment-analysis"
-//export const alias = "social-media-content-curation"
-//export const alias = "social-media-content-insights" wrong!
-export const alias = "content-scheduling-and-publishing"
-//export const alias = "social-media-collaboration"
-//export const alias = "social-media-benchmarks" wrong!
-//export const alias = "paid-social-media-marketing"
-//export const alias = "social-media-optimization"
-//export const alias = "social-media-dashboards-and-reporting"
-//export const alias = "social-media-listening"
-//export const alias = "linkedin-scheduling-tool"
-//export const alias = "social-media-analytics-tools"
-//export const alias = "social-media-scheduling-tools"
-//export const alias = "social-media-video-analytics"
-//export const alias = "find-youtube-influencers"
-//export const alias = "social-media-content-workflow"
-//export const alias = "social-media-reporting-tools"
-//export const alias = "facebook-advertising-benchmarks"
-//export const alias = "social-media-automation"
-//export const alias = "persona-mapping-tool"
-//export const alias = "social-media-content-planning-tool"
-//export const alias = "fake-influencers-detection"
-//export const alias = "influencer-identification-tool"
-//export const alias = "instagram-management"
-//export const alias = "smart-content-publishing-at-scale" url, wrong!
-//export const alias = "easier-social-media-collaboration"  url, wrong!
-//export const alias = "the-most-reliable-marketing-platform"  url, wrong!
-//export const alias = "social-media-approvals"
-//export const alias = "social-media-performance-marketing"
-//export const alias = "whats-new/youtube-influencers"   url, wrong!
-//export const alias = "audiences-and-influencers"  url, wrong!
-//export const alias = "audience-segmentation"
-//export const alias = "audience-analytics"
+export const urlArr1 = [
+	"social-media-analytics",
+	"personalized-marketing",
+	"sentiment-analysis",
+	"social-media-content-curation",
+	"content-scheduling-and-publishing",
+	"social-media-collaboration",
+	"paid-social-media-marketing",
+	"social-media-optimization",
+	"social-media-dashboards-and-reporting",
+	"social-media-listening",
+	"linkedin-scheduling-tool",
+	"social-media-analytics-tools",
+	"social-media-scheduling-tools",
+	"social-media-video-analytics",
+	"find-youtube-influencers",
+	"social-media-content-workflow",
+	"social-media-reporting-tools",
+	"facebook-advertising-benchmarks",
+	"social-media-automation",
+	"persona-mapping-tool",
+	"social-media-content-planning-tool",
+	"fake-influencers-detection",
+	"influencer-identification-tool",
+	"instagram-management",
+	"social-media-approvals",
+	"social-media-performance-marketing",
+	"audience-segmentation",
+	"audience-analytics",
+]
+
+export const urlArr2 = [
+	"live-video-analytics",
+	"social-media-content-insights",
+	"social-media-benchmarks",
+	"smart-content-publishing-at-scale",
+	"easier-social-media-collaboration",
+	"the-most-reliable-marketing-platform",
+	"whats-new/youtube-influencers",
+	"audiences-and-influencers",
+]
+
+
+export const testArr = [
+	"social-media-content-insights",
+]

@@ -1,4 +1,4 @@
-import {sanitizeInput, splitSrcetToArray, filterItems} from './utils.js'
+import {sanitizeInput} from './utils.js'
 
 const getFeaturesSection = ($, copy) => {
 	let data = {}
@@ -14,7 +14,7 @@ const getFeaturesSection = ($, copy) => {
 					retina: $(obj).find('img').attr("data-src").replace('.png', '@2x.png'),
 				},
 			},
-			reversed: i % 2 === 0
+			reversed: i % 2 !== 0
 		}
 		features.push(data)
 

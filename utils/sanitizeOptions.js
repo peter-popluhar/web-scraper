@@ -1,5 +1,7 @@
+import {alias} from '../urls.js';
+
 const sanitizeOptions = {
-	files: ``,
+	files: `./output/${alias}.js`,
 	from: [
 		/"metaTagsData":/g,
 		/"heroBannerData":/g,

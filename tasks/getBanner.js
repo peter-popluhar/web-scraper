@@ -1,6 +1,43 @@
 import {sanitizeInput, splitSrcetToArray, filterItems} from './utils.js'
 
-const bannerImageSelector = '.feature-page__banner picture source';
+const bannerSelector = '.feature-page__banner';
+let imageSrcSet;
+
+const getPictureSrc = (type, source, $) => {
+
+	if($(`${bannerSelector} picture`).length > 0) {
+
+		if (source) {
+			imageSrcSet = $(`${bannerSelector} picture source:nth-of-type(${source})`)[0].attribs.srcset;
+		}
+
+		if (type === 'normal') {
+			return (
+				splitSrcetToArray(
+					sanitizeInput(
+						imageSrcSet
+					)
+				)[0]
+			)
+		} else if (type === 'retina') {
+			return (
+				filterItems(
+					splitSrcetToArray(
+						sanitizeInput(
+							imageSrcSet
+						)
+					), '@2x'
+				)[0]
+
+			)
+		} else if (type === 'png') {
+			return $(`${bannerSelector}-image`).attr("src")
+		}
+	} else {
+		return 'srcset no exists'
+	}
+
+};
 
 const getBanner =($, copy) => (
 	copy.heroBannerData = {
@@ -18,41 +55,33 @@ const getBanner =($, copy) => (
 		img: {
 			xs: {
 				webP: {
-					normal: splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(1)`)[0].attribs.srcset))[0],
-					retina: filterItems(
-						splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(1)`)[0].attribs.srcset)), '@2x'
-					)[0],
+					normal: getPictureSrc('normal', 1, $),
+					retina: getPictureSrc('retina', 1, $),
 				},
 			},
 			md: {
 				webP: {
-					normal: splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(2)`)[0].attribs.srcset))[0],
-					retina: filterItems(
-						splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(2)`)[0].attribs.srcset)), '@2x'
-					)[0],
+					normal: getPictureSrc('normal', 2, $),
+					retina: getPictureSrc('retina', 2, $),
 				},
 			},
 			lg: {
 				webP: {
-					normal: splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(3)`)[0].attribs.srcset))[0],
-					retina: filterItems(
-						splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(3)`)[0].attribs.srcset)), '@2x'
-					)[0],
+					normal: getPictureSrc('normal', 3, $),
+					retina: getPictureSrc('retina', 3, $),
 				},
 			},
 			xl: {
 				webP: {
-					normal: splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(4)`)[0].attribs.srcset))[0],
-					retina: filterItems(
-						splitSrcetToArray(sanitizeInput($(`${bannerImageSelector}:nth-of-type(4)`)[0].attribs.srcset)), '@2x'
-					)[0],
+					normal: getPictureSrc('normal', 4, $),
+					retina: getPictureSrc('retina', 4, $),
 				},
 				png: {
-					normal: $('.feature-page__banner-image').attr("src"),
-					retina: $('.feature-page__banner-image').attr("src"),
+					normal: getPictureSrc('png', null, $),
+					retina: getPictureSrc('png', null, $),
 				},
 			},
-			alt: $('.feature-page__banner-image').attr("alt"),
+			alt: $(`${bannerSelector}-image`).attr("alt"),
 		},
 	}
 )

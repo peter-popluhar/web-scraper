@@ -42,5 +42,6 @@ export const urlArr2 = [
 
 
 export const testArr = [
-	"social-media-content-insights",
+	"social-media-analytics",
+	// "social-media-content-insights",
 ]

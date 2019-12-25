@@ -9,6 +9,7 @@ const sanitizeOptions = {
 		/,export/g,
 		/{export/g,
 		/}]}/g,
+		/https:\/\/www.socialbakers.com\/www\/storage\/www/g,
 	],
 	to: [
 		'export const metaTagsData: MetaTagsTypes =',
@@ -18,6 +19,7 @@ const sanitizeOptions = {
 		';export',
 		'export',
 		'}] ',
+		'${wwwCdn}'
 	],
 };
 

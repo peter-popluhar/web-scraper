@@ -4,14 +4,20 @@ const getFeaturesSection = ($, copy) => {
 	let data = {}
 	let features = []
 	const $sections = $('.feature-page__features .row')
+	const srcSet = (el) => {
+		if ($(el).find('img').attr("data-src")) {
+			return $(el).find('img').attr("data-src")
+		}
+		return $(el).find('img').attr("src")
+	}
 	$sections.each( (i, obj) => {
 		data = {
 			data: {
 				headline: sanitizeInput($(obj).find('h3').text()),
 				text: sanitizeInput($(obj).find('p').html()),
 				img: {
-					normal: $(obj).find('img').attr("data-src"),
-					retina: $(obj).find('img').attr("data-src").replace('.png', '@2x.png'),
+					normal: srcSet(obj),
+					retina: srcSet(obj).replace('.png', '@2x.png'),
 				},
 			},
 			reversed: i % 2 !== 0

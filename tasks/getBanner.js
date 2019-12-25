@@ -13,25 +13,25 @@ const getPictureSrc = (type, source, $) => {
 
 		if (type === 'normal') {
 			return (
-				splitSrcetToArray(
+				'stringLiteralStart' + splitSrcetToArray(
 					sanitizeInput(
 						imageSrcSet
 					)
-				)[0]
-			)
+				)[0] + 'stringLiteralEnd'
+		)
 		} else if (type === 'retina') {
 			return (
-				filterItems(
+				'stringLiteralStart' + filterItems(
 					splitSrcetToArray(
 						sanitizeInput(
 							imageSrcSet
 						)
 					), '@2x'
-				)[0]
+				)[0] + 'stringLiteralEnd'
 
 			)
 		} else if (type === 'png') {
-			return $(`${bannerSelector}-image`).attr("src")
+			return 'stringLiteralStart' + $(`${bannerSelector}-image`).attr("src") + 'stringLiteralEnd'
 		}
 	} else {
 		return 'srcset no exists'

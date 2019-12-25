@@ -14,10 +14,10 @@ const getFeaturesSection = ($, copy) => {
 		data = {
 			data: {
 				headline: sanitizeInput($(obj).find('h3').text()),
-				text: sanitizeInput($(obj).find('p').html()),
+				text: 'stringLiteralStart' + sanitizeInput($(obj).find('p').html()) + 'stringLiteralEnd',
 				img: {
-					normal: srcSet(obj),
-					retina: srcSet(obj).replace('.png', '@2x.png'),
+					normal: 'stringLiteralStart' + srcSet(obj) + 'stringLiteralEnd',
+					retina: 'stringLiteralStart' + srcSet(obj).replace('.png', '@2x.png') + 'stringLiteralEnd',
 				},
 			},
 			reversed: i % 2 !== 0

@@ -1,4 +1,4 @@
-import {testArr, urlArr1, urlArr2} from './urls.js'
+import {testArr, urlArrGood, urlArrBad} from './urls.js'
 import axios from 'axios';
 import cheerio from 'cheerio';
 import getMetaTags from './tasks/getMetaTags.js';
@@ -36,7 +36,7 @@ testArr.forEach( (alias) => {
 			.catch(error => {
 				console.error('Error occurred:', error);
 			});
-	})
+		})
 		.catch(console.error);
 
 })

@@ -14,7 +14,7 @@ let url;
 let copy = {};
 
 testArr.forEach( (alias) => {
-	section = `/feature/${alias}`;
+	section = `${alias}`;
 	url = `https://www.socialbakers.com/${section}`;
 
 	axios(url)

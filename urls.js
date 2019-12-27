@@ -44,7 +44,7 @@ export const urlBad = [
 
 
 export const urlAll = [
-	// ...urlGood,
+	...urlGood,
 	// ...urlBad
 	// "paid-social-media-marketing",
 	// "social-media-performance-marketing",

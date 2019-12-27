@@ -9,13 +9,13 @@ import writeJson from './tasks/writeJson.js';
 import replace from 'replace-in-file';
 import sanitizeOptions from './tasks/sanitizeOptions.js'
 
-let section;
+let subdomain;
 let url;
 let copy = {};
 
 urlAll.forEach( (alias) => {
-	section = `${alias}`;
-	url = `https://www.socialbakers.com/${section}`;
+	subdomain = `/feature/${alias}`;
+	url = `https://www.socialbakers.com/${subdomain}`;
 
 	axios(url)
 		.then(response => {

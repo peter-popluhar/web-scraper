@@ -1,4 +1,4 @@
-import {testArr, urlArrGood, urlArrBad} from './urls.js'
+import {urlAll} from './urls.js'
 import axios from 'axios';
 import cheerio from 'cheerio';
 import getMetaTags from './tasks/getMetaTags.js';
@@ -13,7 +13,7 @@ let section;
 let url;
 let copy = {};
 
-testArr.forEach( (alias) => {
+urlAll.forEach( (alias) => {
 	section = `${alias}`;
 	url = `https://www.socialbakers.com/${section}`;
 

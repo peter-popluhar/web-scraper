@@ -1,4 +1,4 @@
-export const urlArrGood = [
+export const urlGood = [
 	"social-media-analytics",
 	"personalized-marketing",
 	"sentiment-analysis",
@@ -29,7 +29,7 @@ export const urlArrGood = [
 	"audience-analytics",
 ]
 
-export const urlArrBad = [
+export const urlBad = [
 	"live-video-analytics",
 	"social-media-content-insights",
 	// error because of no feature in url
@@ -43,7 +43,9 @@ export const urlArrBad = [
 ]
 
 
-export const testArr = [
-	// ...urlArrGood,
-	// ...urlArrBad
+export const urlAll = [
+	// ...urlGood,
+	// ...urlBad
+	// "paid-social-media-marketing",
+	// "social-media-performance-marketing",
 ]

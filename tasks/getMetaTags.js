@@ -6,7 +6,7 @@ const getMetaTags = ($, copy) => (
 		description: sanitizeInput($('meta[name=description]').attr("content")),
 		ogTitle: sanitizeInput($('meta[property="og:title"]').attr("content")),
 		ogDescription: sanitizeInput($('meta[property="og:description"]').attr("content")),
-		ogImage: sanitizeInput($('meta[property="og:image"]').attr("content")),
+		ogImage: 'stringLiteralStart' + sanitizeInput($('meta[property="og:image"]').attr("content")) + 'stringLiteralEnd',
 		ogUrl: sanitizeInput($('meta[property="og:url"]').attr("content")),
 		shareTwitterTitle: sanitizeInput($('meta[name="twitter:title"]').attr("content")),
 		shareTwitterText: sanitizeInput($('meta[name="twitter:description"]').attr("content")),

@@ -13,6 +13,8 @@ const sanitizeOptions = {
 		/"stringLiteralStart/g,
 		/stringLiteralEnd"/g,
 		/\\"/g,
+		/&#x2019;/g,
+		/&apos;/g,
 	],
 	to: [
 		'export const metaTagsData: MetaTagsTypes =',
@@ -22,10 +24,12 @@ const sanitizeOptions = {
 		';export',
 		'export',
 		'}] ',
-		'${wwwCdn}',
+		'${wwwCdnPath}',
 		'`',
 		'`',
 		'"',
+		"'",
+		"'",
 	],
 };
 
